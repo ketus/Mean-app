@@ -1,0 +1,21 @@
+{
+  "name": "skeleton",
+  "description": "Skeleton for MEAN apps",
+  "main": "index.js",
+  "authors": [
+    "ketus"
+  ],
+  "license": "ISC",
+  "moduleType": [
+    "node"
+  ],
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "jquery": "~2.2.0",
+    "toastr": "~2.1.2",
+    "angular": "^1.4.9",
+    "angular-route": "^1.4.9",
+    "angular-resource": "^1.4.9"
+  }
+}
