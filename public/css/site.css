@@ -1,4 +1,12 @@
-.wat {
-  background-color: #000;
-  color: #fff;
+body {
+  padding-top: 70px;
+}
+.navbar-header a.navbar-brand h6 {
+  color: #ccc;
+}
+footer {
+  padding: 0 15px;
+}
+footer p {
+  border-top: 1px solid rgba(157,157,157,0.5);
 }

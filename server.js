@@ -3,10 +3,10 @@ var path = require('path');
 var stylus = require('stylus');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var db = require('./server/models/dbController');
 
-var dbController = require('./server/models/dbController');
-dbController = dbController.mongoMessage();
-var env  = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 
 var app = express();
 app.set('views', path.join(__dirname, 'server', 'views'));
@@ -32,9 +32,12 @@ app.get('/partials/:partial', function (req, res) {
     res.render('partials/' + req.params.partial);
 });
 
-app.get('*', function (req, res) {
-    res.render('index', {
-        data: dbController
+app.get('/', function (req, res) {
+    db.findOne(function (err, data) {
+        if (err) console.log(err);
+        res.render('index', {
+            mongoMessage: data.message
+        });
     });
 });
 
