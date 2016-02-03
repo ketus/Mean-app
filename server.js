@@ -28,11 +28,11 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-app.get('/partials/:partial', function (req, res) {
-    res.render('partials/' + req.params.partial);
+app.get('/partials/*', function (req, res) {
+    res.render('../../public/app/' + req.params['0']);
 });
 
-app.get('/', function (req, res) {
+app.get('*', function (req, res) {
     db.findOne(function (err, data) {
         if (err) console.log(err);
         res.render('index', {

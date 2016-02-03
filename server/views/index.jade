@@ -11,8 +11,10 @@ block main-content
                         a(href='#') Home
                     li
                         a(href='#') About
+                div(ng-include="'partials/account/navbar-login'")
     section.content
-        .container(ng-view)
-    h2 #{mongoMessage}
-    footer.container.text-center
-        p &copy; MEAN app copyright
+        div(ng-view)
+    //h2 #{mongoMessage}
+    .container
+        footer.text-center
+            p &copy; MEAN app copyright

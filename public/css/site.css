@@ -8,5 +8,12 @@ footer {
   padding: 0 15px;
 }
 footer p {
+  padding-top: 5px;
   border-top: 1px solid rgba(157,157,157,0.5);
+}
+.navbar-form .form-group {
+  margin-left: 5px;
+}
+.navbar-form button {
+  margin-left: 5px;
 }
