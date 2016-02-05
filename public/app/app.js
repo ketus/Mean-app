@@ -9,9 +9,9 @@ app.config(function ($routeProvider, $locationProvider) {
     });
     $routeProvider
         .when('/', {
-                     templateUrl: '/partials/main/main',
-                     controller: 'mainCtrl'
-                   });
+            templateUrl: '/partials/main/main',
+            controller: 'mainCtrl'
+        })
 });
 
 }());

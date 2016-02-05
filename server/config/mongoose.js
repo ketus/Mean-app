@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 
 module.exports = function (config) {
 
-    var db = mongoose.createConnection(config.dbString);
+    mongoose.connect(config.dbString);
+    var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error...'));
     db.once('open', function () {
         console.log('db connection is open');
@@ -27,5 +28,8 @@ module.exports = function (config) {
             User.create({firstName: 'Aneta', lastName: 'Gru', username: 'Antenka'});
         }
     });
-};
 
+    User.findOne({username: 'Ketus'}).exec(function (err, user) {
+        console.log(user._id);
+    });
+};

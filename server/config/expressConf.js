@@ -1,11 +1,11 @@
-var logger = require('morgan');
-var bodyParser = require('body-parser');
-var express = require('express');
-var stylus = require('stylus');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-var passport = require('passport');
+var logger = require('morgan'),
+    bodyParser = require('body-parser'),
+    express = require('express'),
+    path = require('path'),
+    cookieParser = require('cookie-parser'),
+    session = require('express-session'),
+    stylus = require('stylus') || 0,
+    passport = require('passport') || 0;
 
 module.exports = function(app, config) {
 
@@ -13,17 +13,17 @@ module.exports = function(app, config) {
         return stylus(str).set('filename', compilePath);
     }
 
-
     app.set('views', path.join(config.rootPath, 'server', 'views'));
     app.set('view engine', 'jade');
     app.use(logger('dev'));
     app.use(cookieParser());
-    app.use(bodyParser.urlencoded({extended: false}));
+    app.use(bodyParser.urlencoded({extended: true}));
     app.use(session({
         secret: 'not really a secret ketus',
-        saveUninitialized: true,
-        resave: true
+        resave: true,
+        saveUninitialized: false
     }));
+
     app.use(passport.initialize());
     app.use(passport.session());
     app.use(stylus.middleware(

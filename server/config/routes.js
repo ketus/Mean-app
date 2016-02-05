@@ -1,4 +1,5 @@
-var passport = require('passport');
+var passport = require('passport')||0;
+
 module.exports = function (app) {
 
     app.get('/partials/*', function (req, res) {
@@ -6,15 +7,20 @@ module.exports = function (app) {
     });
 
     app.post('/login', function (req, res, next) {
+
         var auth = passport.authenticate('local', function (err, user) {
             if(err) { return next(err); }
-            if(!user) { res.send({success: false}); }
+            if(!user) {
 
-            req.logIn(user, function (err) {
-               if(err) { return next(err); }
-               res.send({ success: true, user: user });
+                res.send({success: false});
+            }
+            //console.log('\n REQUEST: \n' + JSON.stringify(req) + '\n');
+            req.login(user, function (err) {
+                if(err) { return next(err); }
+                res.send({ success: true, user: user });
             });
         });
+
         auth(req, res, next);
     });
 

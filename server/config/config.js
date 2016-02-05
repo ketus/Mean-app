@@ -11,8 +11,5 @@ module.exports = {
         rootPath: rootPath,
         // TODO dbString: 'connection string for production mongoDB',
         port: process.env.PORT || 80
-    },
-    logPath: function () {
-        console.log(this.development.rootPath);
     }
 };
