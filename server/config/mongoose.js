@@ -1,4 +1,5 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    crypto = require('crypto');
 
 module.exports = function (config) {
 
@@ -13,9 +14,18 @@ module.exports = function (config) {
         firstName: String,
         lastName: String,
         username: String,
-        joined: {type: Date, default: Date.now}
+        salt: String,
+        hashed_pwd: String,
+        joined: {type: Date, default: Date.now},
+        roles: [String]
     });
 
+    userSchema.methods = {
+      authenticate: function (password) {
+          return hashPassword(this.salt, password) === this.hashed_pwd;
+      }
+    };
+    
     var User = db.model('User', userSchema);
 
     User.find({}).exec(function (err, collection) {
@@ -23,13 +33,45 @@ module.exports = function (config) {
             console.log(err);
         }
         if (collection.length === 0) {
-            User.create({firstName: 'Maciej', lastName: 'Ketusiątko', username: 'Ketus'});
-            User.create({firstName: 'Marcin', lastName: 'Tob', username: 'Aldaron'});
-            User.create({firstName: 'Aneta', lastName: 'Gru', username: 'Antenka'});
+            var salt,
+                hash;
+
+            salt = createSalt();
+            hash = hashPassword(salt, 'Ketus');
+            User.create({
+                firstName: 'Maciej',
+                lastName: 'Ketusiątko',
+                username: 'Ketus',
+                salt: salt,
+                hashed_pwd: hash,
+                roles: ['admin']
+            });
+            salt = createSalt();
+            hash = hashPassword(salt, 'Aldaron');
+            User.create({
+                firstName: 'Marcin',
+                lastName: 'Tob',
+                username: 'Aldaron',
+                salt: salt,
+                hashed_pwd: hash,
+                roles: ['standard']});
+            salt = createSalt();
+            hash = hashPassword(salt, 'Antenka');
+            User.create({
+                firstName: 'Aneta',
+                lastName: 'Gru',
+                username: 'Antenka',
+                salt: salt,
+                hashed_pwd: hash});
         }
     });
 
-    User.findOne({username: 'Ketus'}).exec(function (err, user) {
-        console.log(user._id);
-    });
+    var createSalt = function () {
+        return crypto.randomBytes(128).toString('base64');
+    };
+
+    var hashPassword = function (salt, pwd) {
+        var hmac = crypto.createHmac('sha1', pwd);
+        return hmac.update(pwd).digest('hex');
+    };
 };
