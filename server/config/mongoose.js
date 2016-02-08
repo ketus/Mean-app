@@ -21,11 +21,11 @@ module.exports = function (config) {
     });
 
     userSchema.methods = {
-      authenticate: function (password) {
-          return hashPassword(this.salt, password) === this.hashed_pwd;
-      }
+        authenticate: function (passwordToMatch) {
+            return hashPassword(this.salt, passwordToMatch) === this.hashed_pwd;
+        }
     };
-    
+    //Create example accounts for testing authentication
     var User = db.model('User', userSchema);
 
     User.find({}).exec(function (err, collection) {

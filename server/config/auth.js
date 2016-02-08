@@ -10,7 +10,7 @@ module.exports.authenticate = function (req, res, next) {
 
         req.login(user, function (err) {
             if(err) { return next(err); }
-            res.send({ success: true, user: stripUser(user) });
+            res.send({ success: true, user: user });
         });
     });
     auth(req, res, next);

@@ -1,7 +1,7 @@
-var passport = require('passport') || 0;
-var LocalStrategy = require('passport-local') || 0;
-var mongoose= require('mongoose') || 0;
-var User = mongoose.model('User');
+var passport = require('passport') || 0,
+    LocalStrategy = require('passport-local') || 0,
+    mongoose= require('mongoose') || 0,
+    User = mongoose.model('User');
 
 module.exports = function () {
 

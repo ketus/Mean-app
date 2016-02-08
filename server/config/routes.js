@@ -15,7 +15,9 @@ module.exports = function (app) {
     app.get('*', function (req, res) {
         console.log(req.user);
         res.render('index', {
-            bootstrappedUser: auth.stripUser(req.user)
+            // TODO use auth.stripUser(req.user) to send
+            // user data to client without password etc.
+            bootstrappedUser: req.user
         });
     });
 };
