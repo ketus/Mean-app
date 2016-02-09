@@ -25,6 +25,7 @@ module.exports = function (config) {
             return hashPassword(this.salt, passwordToMatch) === this.hashed_pwd;
         }
     };
+
     //Create example accounts for testing authentication
     var User = db.model('User', userSchema);
 

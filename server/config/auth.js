@@ -26,3 +26,21 @@ module.exports.stripUser = stripUser = function (user) {
         }
     }
 };
+
+module.exports.requiresApiLogin = function (req, res, next) {
+    if(req.isUnauthenticated()){
+        res.status(403);
+        res.end();
+    } else next();
+};
+
+module.exports.requiresRole = function (role) {
+    return function (req, res, next) {
+        if(req.isUnauthenticated() || req.user.roles.indexOf(role) === -1) {
+            res.status(403);
+            res.end('Unauthorized');
+        } else {
+            next();
+        }
+    }
+};

@@ -1,4 +1,4 @@
-angular.module('skeleton').factory('Auth', function ($http, Identity, $q, User) {
+angular.module('skeleton').factory('Auth', function ($http, Identity, $q, sUser) {
     return {
         authenticateUSer: function (username, password) {
             var dfd = $q.defer();
@@ -12,7 +12,7 @@ angular.module('skeleton').factory('Auth', function ($http, Identity, $q, User) 
             })
             .then(function (response) {
                 if (response.data.success) {
-                    var user = new User();
+                    var user = new sUser();
                     angular.extend(user, response.data.user);
                     Identity.currentUser = user;
                     dfd.resolve(true);

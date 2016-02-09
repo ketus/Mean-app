@@ -1,4 +1,4 @@
-angular.module('skeleton').factory('User', function ($resource) {
+angular.module('skeleton').factory('sUser', function ($resource) {
    var UserResource = $resource('/api/users/:id', { _id: "@id" });
 
     UserResource.prototype.isAdmin = function () {
