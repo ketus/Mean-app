@@ -1,20 +1,18 @@
 extends ../includes/layout
 
 block main-content
-    .navbar.navbar-inverse.navbar-fixed-top
-        .container
-            .navbar-header
-                a.navbar-brand(href='#') MEAN app
-            .navbar-collapse.collapse
-                ul.nav.navbar-nav
-                    li
-                        a(href='#') Home
-                    li
-                        a(href='#') About
-                div(ng-include="'partials/account/navbar-login'")
-    section.content
-        div(ng-view)
-    //h2 #{mongoMessage}
+  .navbar.navbar-inverse.navbar-fixed-top
     .container
-        footer.text-center
-            p &copy; MEAN app copyright
+      .navbar-header
+        a.navbar-brand(href="/") Mean app skeleton
+      .navbar-collapse.collapse
+        ul.nav.navbar-nav
+          li
+            a(href="/") Home
+        div(ng-include="'/partials/account/navbar-login'")
+
+  section.content
+    div(ng-view)
+
+    footer.container.text-center
+      p &copy; Mean app Corp International Ltd.

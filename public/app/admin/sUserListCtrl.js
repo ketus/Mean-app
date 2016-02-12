@@ -1,3 +1,3 @@
-/**
- * Created by ketus on 2/10/16.
- */
+angular.module('skeleton').controller('sUserListCtrl', function ($scope, sIdentity) {
+   $scope.users = sIdentity.query();
+});

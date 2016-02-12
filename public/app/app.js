@@ -1,8 +1,12 @@
-(function(){
+angular.module('skeleton', ['ngResource', 'ngRoute']);
 
-var app = angular.module('skeleton', ['ngResource', 'ngRoute']);
+angular.module('skeleton').config(function ($routeProvider, $locationProvider) {
 
-app.config(function ($routeProvider, $locationProvider) {
+    var routeRoleChecks = {
+      admin: { auth: function (sAuth) {
+        return sAuth.authorizeForRoute('admin')
+      } }
+    };
     $locationProvider.html5Mode({
         enabled: true,
         requireBase: false
@@ -12,6 +16,17 @@ app.config(function ($routeProvider, $locationProvider) {
             templateUrl: '/partials/main/main',
             controller: 'mainCtrl'
         })
+        .when('/admin/users', {
+            templateUrl: '/partials/admin/user-list',
+            controller: 'sUserListCtrl',
+            resolve: routeRoleChecks.admin
+        })
 });
 
-}());
+angular.module('skeleton').run(function ($rootScope, $location) {
+    $rootScope.$on('$routeChangeError', function (ev, curr, prev, rejection) {
+        if(rejection === 'not authorized'){
+            $location.path('/');
+        }
+    })
+});

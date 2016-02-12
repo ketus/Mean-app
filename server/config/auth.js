@@ -1,4 +1,4 @@
-var passport = require('passport') || 0;
+var passport = require('passport');
 
 module.exports.authenticate = function (req, res, next) {
 

@@ -1,4 +1,4 @@
-angular.module('skeleton').factory('Auth', function ($http, Identity, $q, sUser) {
+angular.module('skeleton').factory('sAuth', function ($http, sIdentity, $q, sUser) {
     return {
         authenticateUSer: function (username, password) {
             var dfd = $q.defer();
@@ -14,7 +14,7 @@ angular.module('skeleton').factory('Auth', function ($http, Identity, $q, sUser)
                 if (response.data.success) {
                     var user = new sUser();
                     angular.extend(user, response.data.user);
-                    Identity.currentUser = user;
+                    sIdentity.currentUser = user;
                     dfd.resolve(true);
                 } else {
                     dfd.resolve(false);
@@ -25,10 +25,18 @@ angular.module('skeleton').factory('Auth', function ($http, Identity, $q, sUser)
         logoutUser: function () {
             var dfd = $q.defer();
             $http.post('/logout', {logout: true}).then(function () {
-                Identity.currentUser = undefined;
+                sIdentity.currentUser = undefined;
                 dfd.resolve();
             });
             return dfd.promise;
+        },
+        authorizeForRoute: function (role) {
+            if(sIdentity.isAuthorized(role)){
+                return true;
+            } else {
+                return $q.reject('not authorized');
+            }
         }
+
     }
 });

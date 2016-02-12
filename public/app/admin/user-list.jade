@@ -1,3 +1,4 @@
-//
-   Created by ketus on 2/10/16.
-
+.container
+  table.table
+    tr(ng-repeat='user in users')
+      td {{'id: ' + user._id + '\n' + user.firstName + ' ' + user.lastName}}

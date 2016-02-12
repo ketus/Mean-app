@@ -2,7 +2,6 @@
   <library name="passport" type="javaScript">
     <properties>
       <sourceFilesUrls>
-        <item url="file://$PROJECT_DIR$/node_modules/passport/lib/middleware/authenticate.js" />
         <item url="file://$PROJECT_DIR$/node_modules/passport/lib/framework/connect.js" />
         <item url="file://$PROJECT_DIR$/node_modules/passport/lib/errors/authenticationerror.js" />
         <item url="file://$PROJECT_DIR$/node_modules/passport/lib/http/request.js" />
@@ -10,10 +9,10 @@
         <item url="file://$PROJECT_DIR$/node_modules/passport/lib/index.js" />
         <item url="file://$PROJECT_DIR$/node_modules/passport/lib/strategies/session.js" />
         <item url="file://$PROJECT_DIR$/node_modules/passport/lib/middleware/initialize.js" />
+        <item url="file://$PROJECT_DIR$/node_modules/passport/lib/middleware/authenticate.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/node_modules/passport/lib/middleware/authenticate.js" />
       <root url="file://$PROJECT_DIR$/node_modules/passport/lib/framework/connect.js" />
       <root url="file://$PROJECT_DIR$/node_modules/passport/lib/errors/authenticationerror.js" />
       <root url="file://$PROJECT_DIR$/node_modules/passport/lib/http/request.js" />
@@ -21,6 +20,7 @@
       <root url="file://$PROJECT_DIR$/node_modules/passport/lib/index.js" />
       <root url="file://$PROJECT_DIR$/node_modules/passport/lib/strategies/session.js" />
       <root url="file://$PROJECT_DIR$/node_modules/passport/lib/middleware/initialize.js" />
+      <root url="file://$PROJECT_DIR$/node_modules/passport/lib/middleware/authenticate.js" />
     </CLASSES>
     <DOCUMENTATION>
       <root url="http://passportjs.org/docs" />

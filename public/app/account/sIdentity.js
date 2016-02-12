@@ -1,4 +1,4 @@
-angular.module('skeleton').factory('Identity', function ($window, sUser) {
+angular.module('skeleton').factory('sIdentity', function ($window, sUser) {
     var currentUser;
     if(!!$window.bootstrappedUserObject){
         currentUser = new sUser();
@@ -8,6 +8,9 @@ angular.module('skeleton').factory('Identity', function ($window, sUser) {
         currentUser: currentUser,
         isAuthenticated: function () {
             return !!this.currentUser;
+        },
+        isAuthorized: function (role) {
+            return !!this.currentUser && this.currentUser.roles.indexOf(role) > -1;
         }
     }
 });

@@ -21,7 +21,6 @@ module.exports = function (app) {
     });
 
     app.get('*', function (req, res) {
-        console.log(req.user);
         res.render('index', {
              /* TODO
              call   auth.stripUser(req.user)   to send
