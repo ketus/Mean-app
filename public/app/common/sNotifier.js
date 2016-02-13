@@ -5,6 +5,10 @@ angular.module('skeleton').factory('Notifier', function (Toastr) {
         notify: function (message) {
             Toastr.success(message);
             console.log(message);
+        },
+        error: function (reason) {
+            Toastr.error(reason);
+            console.log(reason);
         }
     }
 });

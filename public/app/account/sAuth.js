@@ -22,6 +22,20 @@ angular.module('skeleton').factory('sAuth', function ($http, sIdentity, $q, sUse
             });
             return dfd.promise;
         },
+
+        createUser: function (newUserData) {
+            var newUser = new sUser(newUserData);
+            var dfd = $q.defer();
+
+            newUser.$save().then(function () {
+                sIdentity.currentUser = newUser;
+                dfd.resolve();
+            }, function (res) {
+               dfd.reject(res.data.reason);
+            });
+            return dfd.promise;
+        },
+
         logoutUser: function () {
             var dfd = $q.defer();
             $http.post('/logout', {logout: true}).then(function () {
@@ -30,6 +44,7 @@ angular.module('skeleton').factory('sAuth', function ($http, sIdentity, $q, sUse
             });
             return dfd.promise;
         },
+
         authorizeForRoute: function (role) {
             if(sIdentity.isAuthorized(role)){
                 return true;

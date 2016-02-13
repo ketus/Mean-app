@@ -21,6 +21,10 @@ angular.module('skeleton').config(function ($routeProvider, $locationProvider) {
             controller: 'sUserListCtrl',
             resolve: routeRoleChecks.admin
         })
+        .when('/signup', {
+            templateUrl: '/partials/account/signup',
+            controller: 'sSignupCtrl'
+        })
 });
 
 angular.module('skeleton').run(function ($rootScope, $location) {

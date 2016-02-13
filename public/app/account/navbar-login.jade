@@ -1,17 +1,20 @@
 .navbar-right(ng-controller='navbarLoginCtrl')
-    form.navbar-form(ng-hide='Identity.isAuthenticated()')
-        .form-group
-            input.form-control(name='username' placeholder='username', ng-model='username' required)
-        .form-group
-            input.form-control(name='password' type='password', placeholder='password', ng-model='password' required)
-        button.btn.btn-default(ng-click='signIn(username, password)') Sign in
-    ul.nav.navbar-nav(ng-show='Identity.isAuthenticated()')
-        li.dropdown
-            a#userLogin.dropdown-toggle(href='', data-toggle='dropdown')
-                |{{ Identity.currentUser.firstName + ' ' + Identity.currentUser.lastName + ' '}}
-                span.caret
-            ul.dropdown-menu
-                li(ng-show='Identity.currentUser.isAdmin()')
-                    a(href='/admin/users') User Admin
-                li
-                    a(href='#', ng-click='signOut()') Sign Out
+  form.navbar-form(ng-hide='Identity.isAuthenticated()')
+    ul.nav.navbar-nav
+      li
+        a(href='/signup') Sign up
+    .form-group
+      input.form-control(name='username' placeholder='username', ng-model='username' required)
+    .form-group
+      input.form-control(name='password' type='password', placeholder='password', ng-model='password' required)
+    button.btn.btn-default(ng-click='signIn(username, password)') Sign in
+  ul.nav.navbar-nav(ng-show='Identity.isAuthenticated()')
+    li.dropdown
+      a#userLogin.dropdown-toggle(href='', data-toggle='dropdown')
+        | {{ Identity.currentUser.firstName + ' ' + Identity.currentUser.lastName + ' '}}
+        span.caret
+      ul.dropdown-menu
+        li(ng-show='Identity.currentUser.isAdmin()')
+          a(href='/admin/users') User Admin
+        li
+          a(href='#', ng-click='signOut()') Sign Out
