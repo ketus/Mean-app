@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    crypto = require('crypto');
+    encrypt = require('../utilities/encryption');
 
 module.exports = function (config) {
 
@@ -22,7 +22,7 @@ module.exports = function (config) {
 
     userSchema.methods = {
         authenticate: function (passwordToMatch) {
-            return hashPassword(this.salt, passwordToMatch) === this.hashed_pwd;
+            return encrypt.hashPassword(this.salt, passwordToMatch) === this.hashed_pwd;
         }
     };
 
@@ -37,8 +37,8 @@ module.exports = function (config) {
             var salt,
                 hash;
 
-            salt = createSalt();
-            hash = hashPassword(salt, 'Ketus');
+            salt = encrypt.createSalt();
+            hash = encrypt.hashPassword(salt, 'Ketus');
             User.create({
                 firstName: 'Maciej',
                 lastName: 'Ketusiątko',
@@ -47,8 +47,8 @@ module.exports = function (config) {
                 hashed_pwd: hash,
                 roles: ['admin']
             });
-            salt = createSalt();
-            hash = hashPassword(salt, 'Aldaron');
+            salt = encrypt.createSalt();
+            hash = encrypt.hashPassword(salt, 'Aldaron');
             User.create({
                 firstName: 'Marcin',
                 lastName: 'Tob',
@@ -56,8 +56,8 @@ module.exports = function (config) {
                 salt: salt,
                 hashed_pwd: hash,
                 roles: ['standard']});
-            salt = createSalt();
-            hash = hashPassword(salt, 'Antenka');
+            salt = encrypt.createSalt();
+            hash = encrypt.hashPassword(salt, 'Antenka');
             User.create({
                 firstName: 'Aneta',
                 lastName: 'Gru',
@@ -66,13 +66,4 @@ module.exports = function (config) {
                 hashed_pwd: hash});
         }
     });
-
-    var createSalt = function () {
-        return crypto.randomBytes(128).toString('base64');
-    };
-
-    var hashPassword = function (salt, pwd) {
-        var hmac = crypto.createHmac('sha1', pwd);
-        return hmac.update(pwd).digest('hex');
-    };
 };

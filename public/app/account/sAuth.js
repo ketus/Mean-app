@@ -25,6 +25,7 @@ angular.module('skeleton').factory('sAuth', function ($http, sIdentity, $q, sUse
 
         createUser: function (newUserData) {
             var newUser = new sUser(newUserData);
+            console.log(newUser);
             var dfd = $q.defer();
 
             newUser.$save().then(function () {

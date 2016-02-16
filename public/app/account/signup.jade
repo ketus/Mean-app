@@ -1,17 +1,17 @@
 .container
   .well
-    form.form-horizontal(name='signupForm)
+    form.form-horizontal(name='signupForm')
       fieldset
         legend New User Info
           .form-group
             label.col-md-2.control-label(for='email') e-mail
             .col-md-10
-              input.form-control(name='email', type='email', placeholder='Email', ng-model='Email')
+              input.form-control(name='email', type='email', placeholder='Email', ng-model='email' required)
 
           .form-group
-            label.col-md-2.control-label(for="Password") Password
+            label.col-md-2.control-label(for="password") Password
             .col-md-10
-              input.form-control(name="password", type="password", placehoder="Passwordmail", ng-model="password", required)
+              input.form-control(name="password", type="password", ng-model="password", required)
 
           .form-group
             label.col-md-2.control-label(for="fname") First Name

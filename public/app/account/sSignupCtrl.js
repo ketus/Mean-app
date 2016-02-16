@@ -1,11 +1,11 @@
-angular.module('skeleton').controller('sSignupCtrl', function ($scope, sAuth, Notifier, $location, sAuth) {
+angular.module('skeleton').controller('sSignupCtrl', function ($scope, sUser, Notifier, $location, sAuth) {
     $scope.signup = function () {
         var newUserData = {
             username: $scope.email,
             password: $scope.password,
-            firstName: $scope.firstName,
-            lastName: $scope.lastName
-        }
+            firstname: $scope.firstName,
+            lastname: $scope.lastName
+        };
 
         sAuth.createUser(newUserData).then(function () {
             Notifier.notify('Your account created!');
