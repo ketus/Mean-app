@@ -1,8 +1,8 @@
 angular.module('skeleton').factory('sAuth', function ($http, sIdentity, $q, sUser) {
+    var headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
     return {
         authenticateUSer: function (username, password) {
             var dfd = $q.defer();
-            var headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'};
 
             $http({
                 url: '/login',
@@ -28,12 +28,27 @@ angular.module('skeleton').factory('sAuth', function ($http, sIdentity, $q, sUse
             console.log(newUser);
             var dfd = $q.defer();
 
-            newUser.$save().then(function () {
+            $http({
+                url: '/api/users',
+                method: 'POST',
+                data:   'username=' + newUser.username + '&password=' + newUser.password +
+                        '&firstname=' + newUser.firstName + '&lastName=' + newUser.lastName,
+                headers: headers
+            }).then(function () {
+                sIdentity.currentUser = newUser;
+                dfd.resolve();
+            }, function (res) {
+                dfd.reject(res.data.reason);
+            })
+
+
+
+            /*newUser.$save().then(function () {
                 sIdentity.currentUser = newUser;
                 dfd.resolve();
             }, function (res) {
                dfd.reject(res.data.reason);
-            });
+            });*/
             return dfd.promise;
         },
 

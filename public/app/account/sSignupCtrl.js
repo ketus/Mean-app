@@ -3,8 +3,8 @@ angular.module('skeleton').controller('sSignupCtrl', function ($scope, sUser, No
         var newUserData = {
             username: $scope.email,
             password: $scope.password,
-            firstname: $scope.firstName,
-            lastname: $scope.lastName
+            firstName: $scope.firstName,
+            lastName: $scope.lastName
         };
 
         sAuth.createUser(newUserData).then(function () {
