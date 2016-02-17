@@ -8,8 +8,8 @@ module.exports.getUsers = function (req, res) {
 };
 
 module.exports.createUser = function (req, res, next) {
-    console.log(req.body);
     var userData = req.body;
+    userdata.username = userData.username.toLocaleLowerCase();
     userData.salt = encrypt.createSalt();
     userData.hashed_pwd = encrypt.hashPassword(userData.salt, userData.password);
     User.create(userData, function (err, user) {

@@ -25,14 +25,13 @@ angular.module('skeleton').factory('sAuth', function ($http, sIdentity, $q, sUse
 
         createUser: function (newUserData) {
             var newUser = new sUser(newUserData);
-            console.log(newUser);
             var dfd = $q.defer();
 
             $http({
                 url: '/api/users',
                 method: 'POST',
                 data:   'username=' + newUser.username + '&password=' + newUser.password +
-                        '&firstname=' + newUser.firstName + '&lastName=' + newUser.lastName,
+                        '&firstName=' + newUser.firstName + '&lastName=' + newUser.lastName,
                 headers: headers
             }).then(function () {
                 sIdentity.currentUser = newUser;
