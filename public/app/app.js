@@ -4,8 +4,12 @@ angular.module('skeleton').config(function ($routeProvider, $locationProvider) {
 
     var routeRoleChecks = {
       admin: { auth: function (sAuth) {
-        return sAuth.authorizeForRoute('admin')
-      } }
+          return sAuth.authorizeForRoute('admin');
+      }},
+      user: { auth: function (sAuth) {
+          return sAuth.authorizeAuthenticatedForRoute();
+      }}  
+        
     };
     $locationProvider.html5Mode({
         enabled: true,
@@ -25,10 +29,15 @@ angular.module('skeleton').config(function ($routeProvider, $locationProvider) {
             templateUrl: '/partials/account/signup',
             controller: 'sSignupCtrl'
         })
+        .when('/profile', {
+            templateUrl: '/partials/account/profile',
+            controller: 'sProfileCtrl',
+            resolve: routeRoleChecks.user
+        })
 });
 
 angular.module('skeleton').run(function ($rootScope, $location) {
-    $rootScope.$on('$routeChangeError', function (ev, curr, prev, rejection) {
+    $rootScope.$on('$routeChangeError', function (event, current, previous, rejection) {
         if(rejection === 'not authorized'){
             $location.path('/');
         }

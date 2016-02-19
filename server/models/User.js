@@ -19,6 +19,9 @@ var userSchema = mongoose.Schema({
 userSchema.methods = {
     authenticate: function (passwordToMatch) {
         return encrypt.hashPassword(this.salt, passwordToMatch) === this.hashed_pwd;
+    },
+    hasRole: function (role) {
+        return this.roles.indexOf(role) > -1;
     }
 };
 
@@ -35,31 +38,31 @@ exports.createDefaultUsers = function () {
                 hash;
 
             salt = encrypt.createSalt();
-            hash = encrypt.hashPassword(salt, 'Ketus');
+            hash = encrypt.hashPassword(salt, 'ketus');
             User.create({
                 firstName: 'Maciej',
                 lastName: 'Ketusiątko',
-                username: 'Ketus',
+                username: 'ketus',
                 salt: salt,
                 hashed_pwd: hash,
                 roles: ['admin']
             });
             salt = encrypt.createSalt();
-            hash = encrypt.hashPassword(salt, 'Aldaron');
+            hash = encrypt.hashPassword(salt, 'aldaron');
             User.create({
                 firstName: 'Marcin',
                 lastName: 'Tob',
-                username: 'Aldaron',
+                username: 'aldaron',
                 salt: salt,
                 hashed_pwd: hash,
                 roles: ['standard']
             });
             salt = encrypt.createSalt();
-            hash = encrypt.hashPassword(salt, 'Antenka');
+            hash = encrypt.hashPassword(salt, 'antenka');
             User.create({
                 firstName: 'Aneta',
                 lastName: 'Gru',
-                username: 'Antenka',
+                username: 'antenka',
                 salt: salt,
                 hashed_pwd: hash
             });

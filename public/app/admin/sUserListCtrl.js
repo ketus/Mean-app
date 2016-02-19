@@ -1,3 +1,3 @@
-angular.module('skeleton').controller('sUserListCtrl', function ($scope, sIdentity) {
-   $scope.users = sIdentity.query();
+angular.module('skeleton').controller('sUserListCtrl', function ($scope, sUser) {
+   $scope.users = sUser.query();
 });

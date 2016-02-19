@@ -1,3 +1,31 @@
-//
-   Created by ketus on 2/18/16.
+.container
+  .well
+    form.form-horizontal(name='profileForm')
+      fieldset
+        legend User profile
+          .form-group
+            label.col-md-2.control-label(for='email') E-mail
+            .col-md-10
+              input.form-control(name='email', type='email', placeholder='Email', ng-model='email')
 
+          .form-group
+            label.col-md-2.control-label(for="firstName") First Name
+            .col-md-10
+              input.form-control(name="firstName", type="text", placehoder="First Name", ng-model="fname")
+
+          .form-group
+            label.col-md-2.control-label(for="lastName") Last Name
+            .col-md-10
+              input.form-control(name="lastName", type="text", placehoder="Last Name", ng-model="lname")
+
+          .form-group
+            label.col-md-2.control-label(for="password") Password
+            .col-md-6
+              input.form-control(name="password", type="password", ng-model="password")
+
+          .form-group
+            .col-md-10.col-md-offset-2
+              .pull-right
+                button.btn.btn-primary(ng-click="update()", ng-disabled="profileForm.$invalid") Update
+                | &nbsp;
+                a.btn.btn-default(href="/") Cancel

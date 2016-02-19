@@ -38,16 +38,20 @@ angular.module('skeleton').factory('sAuth', function ($http, sIdentity, $q, sUse
                 dfd.resolve();
             }, function (res) {
                 dfd.reject(res.data.reason);
-            })
+            });
+            return dfd.promise;
+        },
 
-
-
-            /*newUser.$save().then(function () {
-                sIdentity.currentUser = newUser;
+        updateUserData: function (userData) {
+            var dfd  = $q.defer();
+            var userClone = angular.copy(sIdentity.currentUser);
+            angular.extend(userClone, userData);
+            userClone.$update().then(function () {
+                sIdentity.currentUser = userClone;
                 dfd.resolve();
-            }, function (res) {
-               dfd.reject(res.data.reason);
-            });*/
+            }, function (response) {
+                dfd.reject(response.data.reason);
+            })
             return dfd.promise;
         },
 
@@ -62,6 +66,13 @@ angular.module('skeleton').factory('sAuth', function ($http, sIdentity, $q, sUse
 
         authorizeForRoute: function (role) {
             if(sIdentity.isAuthorized(role)){
+                return true;
+            } else {
+                return $q.reject('not authorized');
+            }
+        },
+        authorizeAuthenticatedForRoute: function () {
+            if(sIdentity.isAuthenticated()){
                 return true;
             } else {
                 return $q.reject('not authorized');
