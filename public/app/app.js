@@ -34,6 +34,10 @@ angular.module('skeleton').config(function ($routeProvider, $locationProvider) {
             controller: 'sProfileCtrl',
             resolve: routeRoleChecks.user
         })
+        .when('/courses', {
+            templateUrl: '/partials/courses/course-list',
+            controller: 'sCourseListCtrl'
+        })
 });
 
 angular.module('skeleton').run(function ($rootScope, $location) {
