@@ -38,6 +38,10 @@ angular.module('skeleton').config(function ($routeProvider, $locationProvider) {
             templateUrl: '/partials/courses/course-list',
             controller: 'sCourseListCtrl'
         })
+        .when('/courses/:id', {
+            templateUrl: '/partials/courses/course-details',
+            controller: 'sCourseDetailsCtrl'
+        })
 });
 
 angular.module('skeleton').run(function ($rootScope, $location) {

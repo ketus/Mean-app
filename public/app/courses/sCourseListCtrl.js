@@ -1,5 +1,5 @@
-angular.module('skeleton').controller('sCourseListCtrl', function ( $scope, sCourse ) {
-    $scope.courses = sCourse.query();
+angular.module('skeleton').controller('sCourseListCtrl', function ( $scope, sCachedCourses ) {
+    $scope.courses = sCachedCourses.query();
 
     $scope.sortOptions = [
         {value:'title', text: 'Sort by title'},
