@@ -3,17 +3,17 @@ var mongoose = require('mongoose');
 var courseSchema = mongoose.Schema({
 
    title: {type: String, required: '{PATH} is required'},
-   featured: {type: String, required: '{PATH} is required'},
-   published: {type: String, required: '{PATH} is required'},
+   featured: {type: Boolean, required: '{PATH} is required'},
+   published: {type: Date, required: '{PATH} is required'},
    tags: [String]
 });
 
 var Course = mongoose.model('Course', courseSchema);
 
-module.exports.createDefaultCourses = function (  ) {
+module.exports.createDefaultCourses = function () {
     Course.find({}).exec(function(err, collection){
         if(collection.length === 0){
-            Course.create({title: 'C# for Sociopaths', featured: true, published: new Date('10/5/2013'), tags: ['C#']});
+            Course.create({title: 'C# for Sociopaths', featured: true, published: new Date('2013/10/5'), tags: ['C#']});
             Course.create({title: 'C# for Non-Sociopaths', featured: true, published: new Date('10/12/2013'), tags: ['C#']});
             Course.create({title: 'Super Duper Expert C#', featured: false, published: new Date('10/1/2013'), tags: ['C#']});
             Course.create({title: 'Visual Basic for Visual Basic Developers', featured: false, published: new Date('7/12/2013'), tags: ['VB']});

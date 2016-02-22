@@ -1,6 +1,6 @@
 var auth = require('./auth'),
     users = require('../controllers/users'),
-    courses = require('../controllers/coursesCtrl');
+    courses = require('../controllers/courses');
     User = require('mongoose').model('User');
 
 module.exports = function (app) {

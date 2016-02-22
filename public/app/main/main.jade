@@ -4,10 +4,6 @@
         p Hi, Welcome. Cheers!
     .row
         .col-md-6
-            .panel.panel-primary
-                .panel-heading.text-center Featured
-                .panel-body Section body
+            div(ng-include="'/partials/main/featured-courses'")
         .col-md-6
-            .panel.panel-primary
-                .panel-heading.text-center New
-                .panel-body Section body
+            div(ng-include="'/partials/main/new-courses'")
